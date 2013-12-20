@@ -1,0 +1,241 @@
+<html ng-app='lncdquest'>
+<head>
+<script src="angular.js"></script>
+<script src="pouchdb-nightly.js"></script>
+<script>
+/* PouchDB */
+	var db = new PouchDB('questioneers');
+	var remoteCouch = false;
+
+/* Angular */
+    var questioneers =  [ 
+     {
+        name: 'Adult Self Report',
+        sections: [
+	        {
+	           name: 'ID',
+	           type: 'normal',
+	           questions: [
+	             { 
+	              type: "radio",
+	              label: 'Your Gender',
+	              options: ['Male','Female']},
+	             {
+	              label: 'Age',
+	              type:'text',
+	             },
+	           ]
+	        },
+	        {
+	           name: 'Education and Work',
+	           type: 'normal',
+	           questions: [
+	             { 
+	              type: "radio",
+	              label: 'Highest Level Of Education',
+	              options: ['No highschool diploma and no GED',
+	                     'GED', 
+	                     'Docoral or Law Degree'
+	                    ]
+	             },
+	             {
+	             	label: 'You Usual Types of Work',
+	             	type:'text',
+	             	desc:  'Please be specific',
+	             }
+	           ]
+        	},
+        	{
+	           name: 'Family',
+	           type: 'grid',
+	           labels: ['Not Applicable','Worse than Average','variable or Average','Better than Average','No Contact'],
+	           desc: "Compared with others, how well do you:",
+	           questions: [
+	             { type: "radio", label: 'Get along with your brother(s)'},
+	             { type: "radio", label: 'Get along with your sister(s)'},
+	             { type: "radio", label: 'Get along with your mother' },
+	             { type: "radio", label: 'Get along with your father' },
+	           ]
+        	}
+        ]
+      },
+      {
+      	name: 'Reward Ranking',
+      	sections: [
+      	   	{
+	           name: 'Reward',
+	           type: 'rank',
+	           desc: "rank what you like 1(best) to 13 (worst):",
+	           questions: [
+	             { label: "Applebee's"},
+	             { label: "Domino's Pizza"},
+	             { label: "Starbucks"},
+	             { label: "American Eagle" },
+	           ]
+        	}
+        ]
+      },
+            {
+      	name: 'Demographic',
+      	sections: [
+      	   	{
+	           name: 'Background',
+	           type: 'normal',
+	           desc: "rank what you like 1(best) to 13 (worst):",
+	           questions: [
+	             { 
+	              type: "radio",
+	              label: 'Do you Consider yourself to be Hispanic or Latina?',
+	              desc: '<b>Hispanic or Latino</b>: A person of Mexican, Puerto Rican, Cuban, South or Central American, ...',
+	              options: ['Hispanic or Latino','Not Hispanic or Latino']
+	             },
+	             {
+	             	label: 'What race do you consider yourself',
+	             	desc: 'Select one or more of the following',
+	             	type:'checkbox',
+	             	/* array of objects because we need to set value indepenently for each option/label */
+	             	options: [{value:0, label:'American Indian'},
+	             	          {value:0, label:'Asian'},
+	             	          {value:0, label:'Black or African American'},
+	             	          {value:0, label:'Native Hawaiian or Other Pacific Islander'},
+	             	          {value:0, label:'White'},
+	             	          {value:0, label:'Do not wish to provide'}]
+	             	
+	             }
+	           ]
+        	}
+        ]
+      }
+    ];
+
+	var lncdquestModule = angular.module('lncdquest', []);
+	
+
+	lncdquestModule.controller('SurveyWrap',
+		function($scope) {
+			var env = {};
+			/* we can do something here to select which questioneers to use */
+			env.questioneers = questioneers;
+			env.ID = 10931;
+			env.Subj = "Will Foran";
+
+			// put env in scope
+			$scope.env = env;
+
+			$scope.$watch('env',function(){
+	     	   $scope.envencode = 'data:text/html;charset=utf-8,' + encodeURIComponent(JSON.stringify($scope.env));
+	     	   console.log('update!');
+	        })
+
+	        $scope.checkedbox = function() {
+	           console.log($scope)
+               //$scope.value = $filter('filter')($scope.selectedAlbumSongs, {checked: true});
+            }
+	});
+
+	
+</script>
+<style>
+ .questioneer {display: block; background-color: #f0f0f0;}
+ .section {display: block; background-color: #f6f6f6;margin-left:12pt;}
+ .question {display: block; margin-left:5pt; margin-bottom: 10pt;}
+ .desc {display: inline;}
+ .input {display: block; margin-left:5pt;}
+ .gridquickcheck { font-style: italic; font-size: 8pt; font-weight: normal; background-color:lightgreen;}
+ /*.ng-dirty { background-color:lightgreen;}
+ .ng-pristine { background-color:pink; border-color:pink;}*/
+ table {} 
+ td {}
+ th.label {text-align: center; max-width:150px;}
+ th {text-align: left;}
+ tr {text-align: center}
+
+</style>
+</head>
+<body>
+<div ng-controller='SurveyWrap'>
+    <h1>{{env.ID}}</h1>
+    <form>
+	<div class="questioneer" ng-repeat="questioneer in env.questioneers">
+		<h2>{{questioneer.name}}</h2>
+
+		<div class="section" ng-repeat="section in questioneer.sections">
+			<h3>{{section.name}}</h3>
+			<div class="desc">{{section.desc}}</div>
+            <div ng-switch="section.type">
+
+                <!-- are we a grid? -->
+                <div class="gridsection" ng-switch-when="grid">
+                	<table border=1>
+	                	<tr>
+	                		<th></th>
+	                		<th class="label" ng-repeat="label in section.labels">{{$index}}. {{label}}</th>
+	                	</tr>
+	                	<tr ng-repeat="q in section.questions">
+	                		<th>{{q.label}} <div ng-bind="q.value" class="gridquickcheck"></div></th>
+	                		<td ng-repeat="label in section.labels">
+	                			<input 
+	                			  name="{{questioneer.name + '_' + section.name +  '_' + $parent.$index + '_' + q.label}}" 
+					              type="radio"
+					              value="{{label}}"
+					              ng-model="q.value"
+					             /> {{$index}} 
+
+	                		</td>
+	                	</tr>
+                    </table>
+                </div>
+                
+                <!-- rank the order of something -->
+                <div class="rank" ng-switch-when="rank">
+                	<div ng-repeat="q in section.questions | orderBy:'value'">
+	                	<input name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
+						       type="text" ng-model="q.value" value="{{q.value}}"
+						       size="2" /> {{q.label}}
+					</div>
+                </div>
+
+
+                <!-- default to just a list of questions -->
+                <div class="normalsection" ng-switch-default>
+				<div class="question" ng-repeat="q in section.questions">
+					<b>{{q.label}}</b><br>
+					<div class="desc">{{q.desc}}</div>
+
+                    <!-- could use ng-value="option" but wouldn't be able to style all inputs in div -->
+					<div class="input" ng-repeat="option in q.options||['']" class="options"> 
+                        
+                        <!-- cannot dynamicly set input type - redudant code -->
+                        <span ng-switch="q.type"> 
+	                    	<input ng-switch-when="checkbox" type="checkbox" name="{{questioneer.name}}_{{section.name}}_{{$parent.$index}}_{{q.label}}[{{option.label}}]" 
+					           ng-model="option.value" ng-change="checkedbox()">
+					         <input ng-switch-when="radio" name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
+					           type="radio" ng-model="q.value"
+					           value="{{option}}" />
+						    <input ng-switch-default name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
+						           type="text" ng-model="q.value"
+						           value="{{option}}" />
+					    </span>
+					    {{option.label||option}} <br>
+
+					</div>
+				</div>
+
+			    </div>
+
+			</div>
+
+
+
+		</div>
+		<hr>
+	</div>
+
+<a class="savelink" target="_blank" href="{{envencode}}">save me</a>
+{{env}}
+</form>
+</div>
+
+
+</body>
+</html>
