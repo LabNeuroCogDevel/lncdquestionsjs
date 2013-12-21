@@ -81,7 +81,6 @@
       	   	{
 	           name: 'Background',
 	           type: 'normal',
-	           desc: "rank what you like 1(best) to 13 (worst):",
 	           questions: [
 	             { 
 	              type: "radio",
@@ -127,11 +126,18 @@
 	     	   console.log('update!');
 	        })
 
-	        $scope.checkedbox = function() {
-	           console.log($scope)
-               //$scope.value = $filter('filter')($scope.selectedAlbumSongs, {checked: true});
-            }
 	});
+
+	lncdquestModule.controller('CheckBoxCtrl',function($scope,$filter){
+
+        $scope.checkedbox = function() {
+           
+          $scope.q.value = $filter('filter')($scope.q.options, {value: true}).map(function(a){
+            return a.label;
+          })
+          console.log($scope.q.value)
+        }
+    })
 
 	
 </script>
@@ -200,14 +206,14 @@
                 <div class="normalsection" ng-switch-default>
 				<div class="question" ng-repeat="q in section.questions">
 					<b>{{q.label}}</b><br>
-					<div class="desc">{{q.desc}}</div>
+					<div class="desc" ng-bind-html-unsafe="q.desc"></div>
 
                     <!-- could use ng-value="option" but wouldn't be able to style all inputs in div -->
 					<div class="input" ng-repeat="option in q.options||['']" class="options"> 
                         
                         <!-- cannot dynamicly set input type - redudant code -->
                         <span ng-switch="q.type"> 
-	                    	<input ng-switch-when="checkbox" type="checkbox" name="{{questioneer.name}}_{{section.name}}_{{$parent.$index}}_{{q.label}}[{{option.label}}]" 
+	                    	<input ng-switch-when="checkbox" type="checkbox" ng-controller="CheckBoxCtrl"  name="{{questioneer.name}}_{{section.name}}_{{$parent.$index}}_{{q.label}}[{{option.label}}]" 
 					           ng-model="option.value" ng-change="checkedbox()">
 					         <input ng-switch-when="radio" name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
 					           type="radio" ng-model="q.value"
@@ -216,7 +222,7 @@
 						           type="text" ng-model="q.value"
 						           value="{{option}}" />
 					    </span>
-					    {{option.label||option}} <br>
+					    <span ng-bind-html-unsafe="option.label||option"> <br>
 
 					</div>
 				</div>
@@ -232,6 +238,7 @@
 	</div>
 
 <a class="savelink" target="_blank" href="{{envencode}}">save me</a>
+<br>
 {{env}}
 </form>
 </div>
