@@ -1,0 +1,81 @@
+    <h1>{{env.ID}}</h1>
+	    <form>
+		<div class="questioneer" ng-repeat="questioneer in env.questioneers">
+			<h2>{{questioneer.name}}</h2>
+
+			<div class="section" ng-repeat="section in questioneer.sections">
+				<h3>{{section.name}}</h3>
+				<div class="desc">{{section.desc}}</div>
+	            <div ng-switch="section.type">
+
+	                <!-- are we a grid? -->
+	                <div class="gridsection" ng-switch-when="grid">
+	                	<table border=1>
+		                	<tr>
+		                		<th></th>
+		                		<th class="label" ng-repeat="label in section.labels">{{$index}}. {{label}}</th>
+		                	</tr>
+		                	<tr ng-repeat="q in section.questions">
+		                		<th>{{q.label}} <div ng-bind="q.value" class="gridquickcheck"></div></th>
+		                		<td ng-repeat="label in section.labels">
+		                			<input 
+		                			  name="{{questioneer.name + '_' + section.name +  '_' + $parent.$index + '_' + q.label}}" 
+						              type="radio"
+						              value="{{label}}"
+						              ng-model="q.value"
+						             /> {{$index}} 
+
+		                		</td>
+		                	</tr>
+	                    </table>
+	                </div>
+	                
+	                <!-- rank the order of something -->
+	                <div class="rank" ng-switch-when="rank">
+	                	<div ng-repeat="q in section.questions | orderBy:'value'">
+		                	<input name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
+							       type="text" ng-model="q.value" value="{{q.value}}"
+							       size="2" /> {{q.label}}
+						</div>
+	                </div>
+
+
+	                <!-- default to just a list of questions -->
+	                <div class="normalsection" ng-switch-default>
+					<div class="question" ng-repeat="q in section.questions">
+						<b>{{q.label}}</b><br>
+						<div class="desc" ng-bind-html-unsafe="q.desc"></div>
+
+	                    <!-- could use ng-value="option" but wouldn't be able to style all inputs in div -->
+						<div class="input" ng-repeat="option in q.options||['']" class="options"> 
+	                        
+	                        <!-- cannot dynamicly set input type - redudant code -->
+	                        <span ng-switch="q.type"> 
+		                    	<input ng-switch-when="checkbox" type="checkbox" ng-controller="CheckBoxCtrl"  name="{{questioneer.name}}_{{section.name}}_{{$parent.$index}}_{{q.label}}[{{option.label}}]" 
+						           ng-model="option.value" ng-change="checkedbox()">
+						         <input ng-switch-when="radio" name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
+						           type="radio" ng-model="q.value"
+						           value="{{option.label||option}}" /> {{option.label||option}}
+							    <input ng-switch-default name="{{questioneer.name}}_{{section.name}}_{{$parent.$index + '_' + q.label}}" 
+							           type="text" ng-model="q.value"
+							           value="{{option}}" />
+						    </span>
+						    <span ng-bind-html-unsafe="option.label||option"> <br>
+
+						</div>
+					</div>
+
+				    </div>
+
+				</div>
+
+
+
+			</div>
+			<hr>
+		</div>
+
+	<a class="savelink" target="_blank" href="{{envencode}}">save me</a>
+	<br>
+	{{env}}
+	</form>

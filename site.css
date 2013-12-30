@@ -1,0 +1,13 @@
+ .questioneer {display: block; background-color: #f0f0f0;}
+ .section {display: block; background-color: #f6f6f6;margin-left:12pt;}
+ .question {display: block; margin-left:5pt; margin-bottom: 10pt;}
+ .desc {display: inline;}
+ .input {display: block; margin-left:5pt;}
+ .gridquickcheck { font-style: italic; font-size: 8pt; font-weight: normal; background-color:lightgreen;}
+ /*.ng-dirty { background-color:lightgreen;}
+ .ng-pristine { background-color:pink; border-color:pink;}*/
+ table {} 
+ td {}
+ th.label {text-align: center; max-width:150px;}
+ th {text-align: left;}
+ tr {text-align: center}

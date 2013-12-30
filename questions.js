@@ -1,5 +1,5 @@
 
-/* Angular */
+
     var questioneers =  [ 
      {
         name: 'Adult Self Report',

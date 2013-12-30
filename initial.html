@@ -1,0 +1,18 @@
+<form>
+RA: 
+ <input type=radio value="AL" ng-model=env.RA> AL 
+ <input type=radio value="RC" ng-model=env.RA> RC 
+ <input type=radio value="JL" ng-model=env.RA> JL 
+ &nbsp; &nbsp; <input type=text value="" ng-model=env.RA size=2 /> 
+<br/>
+
+ID: <input name="ID" type="text" ng-model="env.ID"  size="5" /> <br/>
+First: <input name="First" type="text" ng-model="env.First" size="30" /> <br/>
+Last: <input name="Last" type="text" ng-model="env.Last"  size="30" /> <br/>
+Surveys: 
+<div ng-repeat="q in env.qnames" >
+  <input ng-model="q.value" type=checkbox  /> {{q.name}}  <br />
+</div>
+
+<input type=submit value="Present!" ng-click="StartSurveys()" />
+</form>
