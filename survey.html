@@ -75,7 +75,10 @@
 			<hr>
 		</div>
 
-	<a class="savelink" target="_blank" href="{{envencode}}">save me</a>
+
 	<br>
-	{{env}}
+
+	<input type=submit class="savelink" ng-click='SaveSurvey()' value="Save Me" />
+    <!--<a download="{{env.ID}}_{{env.date}}.json" ng-href="{{envencode}}" class="savelink">save me</a>-->
+	<!--{{env}}-->
 	</form>

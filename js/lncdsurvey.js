@@ -5,7 +5,10 @@
 /* Angular */
 	var lncdquestModule = angular.module('lncdquest', ['ngRoute']);
 	
-	lncdquestModule.config(function($routeProvider,$locationProvider){
+	lncdquestModule.config(function($routeProvider,$locationProvider,$compileProvider){
+ 
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data|blob):/);
+
 		$routeProvider
 		  .when('/:RA/:ID/:first/:last/:surveys', 
 			{templateUrl: 'survey.html', 
@@ -61,10 +64,35 @@
 
             // TODO: SHOULD UPDATE MORE!
 			$scope.$watch('env',function(){
-	     	   $scope.envencode = 'data:text/html;charset=utf-8,' + encodeURIComponent(JSON.stringify($scope.env));
+	     	   //$scope.envencode = 'data:text/html;charset=utf-8,' + encodeURIComponent(JSON.stringify($scope.env));
+	     	   var blob = new Blob([JSON.stringify($scope.env)], {type: 'text/json;charset=utf-8'});
+               $scope.envencode = URL.createObjectURL(blob);
 	     	   console.log('update!');
 	        })
+
+           // prompt to download json
+           //create blob
+           // create url, create click
+	       $scope.SaveSurvey = function(){
+		 	   var blob = new Blob([JSON.stringify($scope.env)], {type: 'text/json;charset=utf-8'});
+	           $scope.envencode = URL.createObjectURL(blob);
+	     	   console.log('update!');
+
+	     	    var link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+				link.href = URL.createObjectURL(blob);
+				link.download = $scope.env.ID + "_" + $scope.env.date + ".json"; // whatever file name you want :)
+
+				var event = document.createEvent("MouseEvents");
+				event.initEvent("click", true, false);
+				link.dispatchEvent(event);
+	        };
     };
+
+    
+
+
+
+
     //lncdquestModule.controller('SurveyWrap', SurveyWrap);
 	
 
