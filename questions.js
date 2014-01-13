@@ -98,8 +98,44 @@
            	},
            	{
            		name: 'Spouse or Partner',
-           	},
-        	{
+           		type: 'normal',
+           		questions: [
+           		    {
+           		    type: 'radio',
+           		    label: 'What is your marital status?',
+           		    options: ['Never been married',
+           		    'Married, living with spouse',
+           		    'Widowed',
+           		    'Married but separated from spouse',
+           		    'Divorced',
+           		    'Other (please specify)'], //to do: make open text field so subjects can specify other
+           		    },
+           		    {
+                  type: 'radio',
+                  label: 'At any time in the past 6 months, did you live with your spouse or with a partner?',
+                  options: ['No - please skip to "Family" section.',
+                      'Yes - if yes fill out the section below',
+                      ] 
+                  }],
+            },      
+            {
+              name: 'Spouse or Partner Description',
+              type: 'grid',
+              labels: ['Not True', 'Somewhat or Sometimes True', 'Very True or Often True'],
+              desc: "Use the options to describe your relationship in the past 6 months",
+              questions: [
+                { type: 'radio', label: 'I get along well with my spouse or partner'},
+                { type: 'radio', label: 'My spouse or partner and I have trouble sharing resonsibilities'},
+                { type: 'radio', label: 'I feel satisfied with my spouse or partner'},
+                { type: 'radio', label: 'My spouse or partner and I enjoy similar activities'}, 
+                { type: 'radio', label: 'My spouse or partner and I disagree about living arangements, such as where we live'},
+                { type: 'radio', label: "I have trouble with my spouse or partner's family"},
+                { type: 'radio', label: "I like my spouse or partner's friends"},
+                { type: 'radio', label: "My spouse or partner's behavior annoys me"},
+                ]      
+            },
+
+     		{
 	           name: 'Family',
 	           type: 'grid',
 	           labels: ['Not Applicable','Worse than Average','variable or Average','Better than Average','No Contact'],
