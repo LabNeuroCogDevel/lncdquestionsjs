@@ -16,6 +16,11 @@
 	              label: 'Age',
 	              type:'text',
 	             },
+	             {	            
+	             	label: 'Birthdate mm/dd/yyyy',
+	             	type: 'text',
+	             	//to do: the date needs to be formatted into a series of dropdown menus
+	             },
 	           ]
 	        },
 	        {
@@ -27,16 +32,73 @@
 	              label: 'Highest Level Of Education',
 	              options: ['No highschool diploma and no GED',
 	                     'GED', 
-	                     'Docoral or Law Degree'
-	                    ]
+	                     'High school graduate',
+	                     'Some college but no college degree',
+	                     "Associate's Degree",
+	                     "Bachelor's or RN Degree",
+	                     'Some graduate school but no graduate degree',
+	                     "Master's Degree",
+	                     'Docoral or Law Degree', 
+	                     'Other education (sepcify)', //to do: put a free text field so people can specify their 'other education'
+	                       ]
 	             },
 	             {
-	             	label: 'You Usual Types of Work',
+	             	label: 'Your Usual Types of Work',
 	             	type:'text',
 	             	desc:  'Please be specific',
-	             }
+	             },
+	             {
+	             	label: "Your Spouse or Partner's Usual Types of Work",
+	             	type: 'text',
+	             	desc: 'Please be specific',
+	             },
 	           ]
         	},
+        	{
+        		name: 'Friends',
+        		type: 'normal',
+        		questions: [
+        		 {
+        		 	type: 'radio',
+        		 	label: 'About how many close friends do you have? (Do not include family members.)',
+                    options: ['None', 
+                    		'1',
+                    		'2 or 3',
+                    		'4 or more',
+                    		]
+                  },
+                  { 		
+                	type: 'radio',
+                	label: 'About how many times a month do you have contact with any of your close friends? (Include in-person contacts, phone, letters, e-mail.)',
+                	options: ['Less than 1',
+                			'1 or 2',
+                			'3 or 4',
+                			'5 or more',
+                			]
+                },
+                {
+                    type: 'radio',
+                    label: 'How well do you get along with your close friends?',
+                    options: ["Not as well as I'd like",
+                    		'Average',
+                    		'Above average',
+                    		'Far above average',
+                    		]
+               	},
+               	{
+               		type: 'radio',
+               		label: 'About how many times a month do any friends ro family visit you?',
+               		options: ['Less than 1',
+               				'1 or 2',
+               				'3 or 4',
+               				'5 or more',
+               				]
+
+                }], 
+           	},
+           	{
+           		name: 'Spouse or Partner',
+           	},
         	{
 	           name: 'Family',
 	           type: 'grid',
@@ -50,6 +112,7 @@
 	           ]
         	}
         ]
+
       },
       {
       	name: 'Reward Ranking',
