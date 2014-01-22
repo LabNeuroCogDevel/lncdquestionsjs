@@ -152,10 +152,42 @@
                { type: "radio", label: 'F. Get along with your stepchildren'},
               ]
           },
+          {
+            name: 'Job',
+            type: 'normal',
+            questions: [
+             {
+              type: 'radio',
+              labels: "At any time in the past 6 months, did you have any paid jobs (including self-employment and military service)?",
+              options: ["No--Please skip to 'Education' section", 
+              'Yes--please describe your job(s) in the field below:'],
+             },
+             {
+              type: 'text',
+              label: 'Job Description',
+             }],
+           },  
+           { 
+             name: 'Work Experience',
+             type: 'grid', 
+             labels: ['Not True', 'Somewhat or Sometimes True', 'Very True or Often True'],
+             desc: "Choose option 0, 1, or 2 for items A-I to describe your work experience during the past 6 months:",
+              questions: [
+               { type: "radio", label: 'A. I work well with others'},
+               { type: "radio", label: 'B. I have trouble getting along with bosses'},
+               { type: "radio", label: 'C. I do my work well'},
+               { type: "radio", label: 'D. I have trouble finishing my work'},
+               { type: "radio", label: 'E. I am satisfied with my work situation'},
+               { type: "radio", label: 'F. I do things that may cause me to lose my job'},
+               { type: "radio", label: "G. I stay away from my job even when I'm not sick or not on a vacation"},
+               { type: "radio", label: 'H. My job is too stressful for me'},
+               { type: "radio", label: 'I. I worry too much about work'},
+               ]
+           },
+           //MAKE A FIELD BELOW FOR THEM TO DESCRIBE THEIR JOB 
+]},
           
-        ]},
-          
-          // End ASR Questionnaire
+// End ASR Questionnaire
 
       {
       	name: 'Reward Ranking',
@@ -173,7 +205,7 @@
         	}
         ]
       },
-      // End Reward Ranking Questionnaire
+// End Reward Ranking Questionnaire
       {
       	name: 'Demographic',
       	sections: [
@@ -205,3 +237,4 @@
         ]
       }
     ];
+//End all questionnaires
