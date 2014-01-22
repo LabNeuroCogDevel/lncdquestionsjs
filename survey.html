@@ -1,9 +1,9 @@
     <h1>{{env.ID}}</h1>
 	    <form>
-		<div class="questioneer" ng-repeat="questioneer in env.questioneers">
+		<div class="questioneer" ng-repeat="questioneer in env.questioneers"  ng-class-odd="'odd'">
 			<h2>{{questioneer.name}}</h2>
 
-			<div class="section" ng-repeat="section in questioneer.sections">
+			<div class="section" ng-repeat="section in questioneer.sections"  ng-class-odd="'odd'">
 				<h3>{{section.name}}</h3>
 				<div class="desc">{{section.desc}}</div>
 	            <div ng-switch="section.type">
