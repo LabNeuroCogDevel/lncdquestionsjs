@@ -135,21 +135,28 @@
                 ]      
             },
 
-     		{
+     		 {
 	           name: 'Family',
 	           type: 'grid',
 	           labels: ['Not Applicable','Worse than Average','variable or Average','Better than Average','No Contact'],
 	           desc: "Compared with others, how well do you:",
 	           questions: [
-	             { type: "radio", label: 'Get along with your brother(s)'},
-	             { type: "radio", label: 'Get along with your sister(s)'},
-	             { type: "radio", label: 'Get along with your mother' },
-	             { type: "radio", label: 'Get along with your father' },
-	           ]
-        	}
-        ]
+	             { type: "radio", label: 'A. Get along with your brother(s)'},
+	             { type: "radio", label: 'B. Get along with your sister(s)'},
+	             { type: "radio", label: 'C. Get along with your mother' },
+	             { type: "radio", label: 'D. Get along with your father' },
+               { type: "radio", label: 'E.1 Get along with your Oldest child'},
+               { type: "radio", label: 'E.2 Get along with your 2nd oldest child'},
+               { type: "radio", label: 'E.3 Get along with your 3rd oldest child'},
+               { type: "radio", label: 'E.4 Get along Other children'},
+               { type: "radio", label: 'F. Get along with your stepchildren'},
+              ]
+          },
+          
+        ]},
+          
+          // End ASR Questionnaire
 
-      },
       {
       	name: 'Reward Ranking',
       	sections: [
@@ -166,7 +173,8 @@
         	}
         ]
       },
-            {
+      // End Reward Ranking Questionnaire
+      {
       	name: 'Demographic',
       	sections: [
       	   	{
