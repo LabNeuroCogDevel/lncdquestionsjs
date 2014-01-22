@@ -1,5 +1,7 @@
  .questioneer {display: block; background-color: #f0f0f0;}
+ .questioneer.odd {display: block; background-color: #a0a0a0;}
  .section {display: block; background-color: #f6f6f6;margin-left:12pt;}
+ .section.odd {display: block; background-color: #d6d6d6;margin-left:12pt;}
  .question {display: block; margin-left:5pt; margin-bottom: 10pt;}
  .desc {display: inline;}
  .input {display: block; margin-left:5pt;}
