@@ -211,7 +211,7 @@ var ASR = {
           {
             name: 'Other Questions', 
             type: 'normal',
-            desc:"Do you have any illness, disability, or handicap?",
+            desc: "Do you have any illness, disability, or handicap?",
             questions: [
             {
               type: 'radio',
@@ -242,13 +242,169 @@ var ASR = {
           {
             name: 'Describe Yourself',
             type: 'normal',
-            desc: "Please describe the best things about yourself:",
+            desc: "Please describe the best things about yourself",
             questions: [
             {
               type: 'text',
             }],
-          },  
-   ]        
+          },
+          { 
+            name: 'Education Experience',
+            type: 'grid',
+            labels: ['Not True', 'Somewhat or Sometimes True', 'Very True or Often True'],
+            desc: "Below is a list of items that describe people.  For each item, please circle 0, 1, or 2 to describe yourself over the past 6 month.  Please answer all items as well as you can, even if some do not seem to apply to you.",
+            questions: [ 
+              { type: "radio", label: '1. I am too forgetful'},
+              { type: "radio", label: '2. I make good use of my opportunities'},
+              { type: "radio", label: '3. I argue a lot'},
+              { type: "radio", label: '4. I work up to my ability'},
+              { type: "radio", label: '5. I blame others for my problems'},
+              { type: "radio", label: '6. I use drugs (other than alcohol and nicotine) for nonmedical purposes (describe)'}, //make open field for this questions
+              { type: "radio", label: '7. I brag'},
+              { type: "radio", label: '8. I have trouble concentrating or paying attention for long'},
+              { type: "radio", label: "9. I can't get my mind off certain thoughts (describe):"}, //make open field for this question
+              { type: "radio", label: '10. I have trouble sitting still'},
+              { type: "radio", label: '11. I am too dependent on others'},
+              { type: "radio", label: '12. I feel lonely'},
+              { type: "radio", label: '13. I feel confused or in a fog'},
+              { type: "radio", label: '14. I cry a lot'},
+              { type: "radio", label: '15. I am pretty honest'},
+              { type: "radio", label: '16. I am mean to others'},
+              { type: "radio", label: '17. I daydream a lot'},
+              { type: "radio", label: '19. I try to get a lot of attention'},
+              { type: "radio", label: '20. I damage or destroy my things'},
+              { type: "radio", label: '21. I damage or destroy things belonging to others'},
+              { type: "radio", label: '22. I worry about my future'},
+              { type: "radio", label: '23. I break rules at work or elsewhere'},
+              { type: "radio", label: "24. I don't eat as well as I should"},
+              { type: "radio", label: "25. I don't get along with other people"},
+              { type: "radio", label: "26. I don't feel guilty after doing something I shouldn't"},
+              { type: "radio", label: '27. I am jealous of others'},
+              { type: "radio", label: '28. I get along badly with my family'},
+              { type: "radio", label: '29. I am afraid of certain animals, situations, or places (describe'}, //make open field for this
+              { type: "radio", label: '30. My relations with the opposite sex are poor'},
+              { type: "radio", label: '31. I am afraid I might think or do something bad'},
+              { type: "radio", label: '32. I feel that I ahve to be perfect'},
+              { type: "radio", label: '33. I feel that no one loves me'},
+              { type: "radio", label: '34. I feel that others are out to get me'},
+              { type: "radio", label: '35. I feel that others are out to get me'},
+              { type: "radio", label: '36. I accidentally get hurt a lot, accident-prone'},
+              { type: "radio", label: '37. I get in many fights'},
+              { type: "radio", label: '38. My relations with neighbors are poor'},
+              { type: "radio", label: '39. I hang around people who get in trouble'},
+              { type: "radio", label: "40. I hear sounds or voices that other people think aren't there (describe):"}, //make open field for this
+              { type: "radio", label: '41. I am impulsive or act without thinkng'},
+              { type: "radio", label: '42. I would rather be alone than with others'},
+              { type: "radio", label: '43. I lie or cheat'},
+              { type: "radio", label: '44. I feel overwhelmed by my responsibilities'},
+              { type: "radio", label: '45. I am nervous or tense'},
+              { type: "radio", label: '46. Parts of my body twitch or make nervous movements (describe)'}, //make open field
+              { type: "radio", label: '47. I lack self-confidence'},
+              { type: "radio", label: '48. I am not liked by others'},
+              { type: "radio", label: '49. I can do certain things better than other people'},
+              { type: "radio", label: '50. I am too fearful or anxious'},
+              { type: "radio", label: '51. I feel dizzy or lightheaded'},
+              { type: "radio", label: '52. I feel too guilty'},
+              { type: "radio", label: '53. I have trouble planning for the future'},
+              { type: "radio", label: '54. I feel tired without good reason'},
+              { type: "radio", label: '55. My moods swing between elation and depression'},
+              { type: "normal", label: '56. Physical problems without known medical cause'}, //ask Will about this
+              { type: "radio", label: '56a. Aches or pains (not stomach or headaches)'},
+              { type: "radio", label: '56b. Headaches'},
+              { type: "radio", label: '56c. Nausea, feel sick'},
+              { type: "radio", label: '56d. Problems with eyes (not if corrected by glases) (describe):'}, //make open field
+              { type: "radio", label: '56e. Rashes or other skin problems'},
+              { type: "radio", label: '56f. Stomachaches'},
+              { type: "radio", label: '56g. Vomiting, trowing up'},
+              { type: "radio", label: '56h. Heart pounding or racing'},
+              { type: "radio", label: '56i. Numbness or tingling in body parts'},
+              { type: "radio", label: '57. I physically attack people'},
+              { type: "radio", label: '58. I pick my sckin or other parts of my body (describe):'}, //make open field
+              { type: "radio", label: '59. I fail to finish things I should do'},
+              { type: "radio", label: '60. There is very little that I enjoy'},
+              { type: "radio", label: '61. My work performance is poor'},
+              { type: "radio", label: '62. I am poorly coordinated or clumsy'},
+              { type: "radio", label: '63. I would rather be with older people than with people than with people of my own age'},
+              { type: "radio", label: '64. I have trouble settling priorities'},
+              { type: "radio", label: '65. I refuse to talk'}, 
+              { type: "radio", label: '66. I repeat certain acts over and over (describe)'}, //make open field
+              { type: "radio", label: '67. I have trouble making or keeping friends'},
+              { type: "radio", label: '68. I scream or yell a lot'},
+              { type: "radio", label: '69. I am secretive or keep things to myself'},
+              { type: "radio", label: "70. I see things that other people think aren't there (describe):"},
+              { type: "radio", label: '71. I am self-conscious or easily embarrassed'},
+              { type: "radio", label: '72. I worry about my family'},
+              { type: "radio", label: '73. I meet my responsibilities to my family'},
+              { type: "radio", label: '74. I show off or clown'},
+              { type: "radio", label: '75. I am too shy or timid'},
+              { type: "radio", label: '76. My behavior is irresponsible'},
+              { type: "radio", label: '77. I sleep more than most other people during day and/or night (describe):'}, //make open field
+              { type: "radio", label: '78. I have trouble making decisions'},
+              { type: "radio", label: '79. I have a speech problem (describe):'}, //make open field
+              { type: "radio", label: '80. I stand up for my rights'},
+              { type: "radio", label: '81. My behavior is very changeable'},
+              { type: "radio", label: '82. I steal'},
+              { type: "radio", label: '83. I am easily bored'},
+              { type: "radio", label: '84. I do things that other people think are strange (describe):'}, //make open field
+              { type: "radio", label: '85. I have thoughts that other people would think are strange (describe):'}, //make open field
+              { type: "radio", label: '86. I am stubborn, sullen, or irritable'},
+              { type: "radio", label: '87. My moods or feelings change suddenly'},
+              { type: "radio", label: '88. I enjoy being with people'},
+              { type: "radio", label: '89. I rush into things without considering the risks'},
+              { type: "radio", label: '90. I drink too much alcohol or get drunk'},
+              { type: "radio", label: '92. I do things that may cause me trouble with the law (describe):'}, //make open field
+              { type: "radio", label: '93. I talk too much'},
+              { type: "radio", label: '94. I tease others a lot'},
+              { type: "radio", label: '95. I have a hot temper'},
+              { type: "radio", label: '96. I think about sex too much'},
+              { type: "radio", label: '97. I threaten to hurt people'},
+              { type: "radio", label: '98. I like to help others'},
+              { type: "radio", label: '99. I dislike staying in one place for very long'},
+              { type: "radio", label: '100. I have trouble sleeping (describe):'}, // make open field
+              { type: "radio", label: "101. I stay away from my job even when I'm not sick or not on vacation"},
+              { type: "radio", label: "102. I don't have much energy"},
+              { type: "radio", label: '103. I am unhappy, sad, or depressed'},
+              { type: "radio", label: '104. I am louder than others'},
+              { type: "radio", label: '105. People think I am disorganized'},
+              { type: "radio", label: '106. I try to be fair to others'},
+              { type: "radio", label: "107. I feel that I can't succeed"},
+              { type: "radio", label: '108. I tend to lose things'},
+              { type: "radio", label: '109. I like to try new things'},
+              { type: "radio", label: '110. I wish I were of the opposite sex'},
+              { type: "radio", label: '111. I keep from getting involved with others'},
+              { type: "radio", label: '112. I worry a lot'},
+              { type: "radio", label: '113. I worry about my relations with the opposite sex'},
+              { type: "radio", label: '114. I fail to pay my debts or meet other financial responsibilities'},
+              { type: "radio", label: '115. I feel resless or fidgety'},
+              { type: "radio", label: '116. I get upset to easily'},
+              { type: "radio", label: '117. I have trouble managing money or credit cards'},
+              { type: "radio", label: '118. I am too impatient'},
+              { type: "radio", label: '119. I am not good at details'},
+              { type: "radio", label: '120. I drive too fast'},
+              { type: "radio", label: '121. I tend to be late for appointments'},
+              { type: "radio", label: '122. I have trouble keeping a job'},
+              { type: "radio", label: '123. I am a happy person'},
+            ]   
+          },
+          {
+            name: "In the past 6 months...", 
+            type: "normal",
+            questions: [
+              { 
+                type: 'text',
+                label: "In the 6 months, about how many times per day did you use tobacco (including smokeless tobacco)?",
+              },
+              {
+                type: 'text',
+                label: "In the past 6 months, about how many times per day did you use tobacco (including smokeless tobacco)?",
+              },
+              { 
+                type: 'text',
+                label: "In the past 6 months, on how many days did you use drugs for nonmedical purposes (including marijuana, cocaine, and other drugs, except alcohol and nicotine)?",
+              }
+              ]
+          }  
+    ]        
 };
 
     var RewardRanking = {
