@@ -211,10 +211,10 @@ var ASR = {
           {
             name: 'Other Questions', 
             type: 'normal',
+            desc:"Do you have any illness, disability, or handicap?",
             questions: [
             {
               type: 'radio',
-              labels: "Do you have any illness, disability, or handicap?",
               options: [
               'No', 
               'Yes--please describe'],
@@ -222,12 +222,32 @@ var ASR = {
             {
               type: 'text',
               label: 'If "yes" describe below',
-            },
+            }],
+          },
+          {
+            name: 'Concerns',
+            type: 'normal',
+            desc: "Please describe your concerns or worries about family, work, education, or other things:",
+            questions: [
             {
               type: 'text',
-              label: 'Please describe your concerns or worries about family, work, education'
+            },
+            {
+              type: 'radio',
+              options: [
+              'No Concerns',
+              ],
             }],
-          }
+          },
+          {
+            name: 'Describe Yourself',
+            type: 'normal',
+            desc: "Please describe the best things about yourself:",
+            questions: [
+            {
+              type: 'text',
+            }],
+          },  
    ]        
 };
 
